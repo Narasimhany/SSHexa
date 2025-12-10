@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RELION Web Interface</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Cryo-EM processing</p>
+      <h1>RELION Web Interface</h1>
+      <p class="lede">Plan and stage your entire RELION workflow from a single, friendly page. Configure each task, capture its
+parameters, and review the queue before running on the cluster.</p>
+      <div class="hero__actions">
+        <button class="btn btn--primary" id="createPipeline">Create Pipeline Draft</button>
+        <button class="btn" id="clearPipeline">Clear Queue</button>
+        <button class="btn" id="exportPipeline">Export JSON</button>
+      </div>
+      <p class="hint">Need a quick start? <button class="link" id="loadStarter">Load starter workflow</button> with the most common RELION steps.</p>
+    </div>
+    <div class="hero__status" id="workflowSummary">
+      <h3>Workflow snapshot</h3>
+      <p class="status-line"><span class="dot dot--active"></span>Ready to accept tasks</p>
+      <p class="status-line"><span class="dot"></span>0 steps staged</p>
+      <div class="status-grid">
+        <div>
+          <p class="hint">Basic</p>
+          <p class="status-value" id="basicCount">0</p>
+        </div>
+        <div>
+          <p class="hint">Advanced</p>
+          <p class="status-value" id="advancedCount">0</p>
+        </div>
+        <div>
+          <p class="hint">Parameters</p>
+          <p class="status-value" id="paramCount">0</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel__heading">
+        <div>
+          <p class="eyebrow">Task library</p>
+          <h2>RELION job templates</h2>
+          <p class="hint">Fill in the form for each job type to capture the parameters you would normally set in the desktop interface.</p>
+        </div>
+        <div class="legend">
+          <span class="pill">Basic</span>
+          <span class="pill pill--advanced">Advanced</span>
+        </div>
+      </div>
+      <div class="cards" id="taskCards"></div>
+    </section>
+
+    <aside class="panel queue-panel">
+      <div class="panel__heading">
+        <div>
+          <p class="eyebrow">Queue</p>
+          <h2>Staged tasks</h2>
+          <p class="hint">Submitted tasks will appear here in the order they were added. Update notes or reorder before running them.</p>
+        </div>
+      </div>
+      <div id="emptyState" class="empty">No tasks yet. Add a job from the left to start a pipeline.</div>
+      <ul class="queue" id="queue"></ul>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <p>RELION web interface mock • Organize motion correction, CTF estimation, picking, classification, and refinement jobs.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
